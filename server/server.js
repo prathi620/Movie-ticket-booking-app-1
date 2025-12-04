@@ -37,7 +37,7 @@ app.use(compression());
 
 // CORS Configuration
 const corsOptions = {
-    origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+    origin: process.env.CORS_ORIGIN || 'https://movie-ticket-booking-app-1-ccjt.onrender.com',
     credentials: true,
     optionsSuccessStatus: 200
 };
@@ -116,6 +116,11 @@ if (isProduction) {
         });
     }
 }
+
+// 404 handler for API routes
+app.use('/api/*', (req, res) => {
+    res.status(404).json({ message: 'API endpoint not found' });
+});
 
 // Global error handler
 app.use((err, req, res, next) => {
