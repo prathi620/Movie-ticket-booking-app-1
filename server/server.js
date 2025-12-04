@@ -37,7 +37,7 @@ app.use(compression());
 
 // CORS Configuration
 const corsOptions = {
-    origin: process.env.CORS_ORIGIN || 'https://movie-ticket-booking-app-1-ccjt.onrender.com',
+    origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
     credentials: true,
     optionsSuccessStatus: 200
 };
@@ -116,6 +116,9 @@ if (isProduction) {
         });
     }
 }
+
+// Global error handler
+app.use((err, req, res, next) => {
     console.error('Error:', err);
     
     const statusCode = err.statusCode || 500;
@@ -195,4 +198,3 @@ process.on('unhandledRejection', (reason, promise) => {
 });
 
 module.exports = app; // Export for testing
-
