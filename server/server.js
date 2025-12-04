@@ -116,14 +116,6 @@ if (isProduction) {
         });
     }
 }
-
-// 404 handler for API routes
-app.use('/api/*', (req, res) => {
-    res.status(404).json({ message: 'API endpoint not found' });
-});
-
-// Global error handler
-app.use((err, req, res, next) => {
     console.error('Error:', err);
     
     const statusCode = err.statusCode || 500;
@@ -203,3 +195,4 @@ process.on('unhandledRejection', (reason, promise) => {
 });
 
 module.exports = app; // Export for testing
+
