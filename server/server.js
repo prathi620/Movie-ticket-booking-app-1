@@ -37,7 +37,7 @@ app.use(compression());
 
 // CORS Configuration
 const corsOptions = {
-    origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+    origin: process.env.CORS_ORIGIN || 'https://movie-ticket-booking-app-1-4qzu.vercel.app',
     credentials: true,
     optionsSuccessStatus: 200
 };
@@ -198,3 +198,4 @@ process.on('unhandledRejection', (reason, promise) => {
 });
 
 module.exports = app; // Export for testing
+
