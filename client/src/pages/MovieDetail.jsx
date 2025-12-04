@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import API_URL from '../config/api';
 
 const MovieDetail = () => {
     const { id } = useParams();
@@ -11,11 +12,11 @@ const MovieDetail = () => {
     useEffect(() => {
         const fetchMovieData = async () => {
             try {
-                const movieRes = await fetch(`http://localhost:5000/api/movies/${id}`);
+                const movieRes = await fetch(`${API_URL}/api/movies/${id}`);
                 const movieData = await movieRes.json();
                 setMovie(movieData);
 
-                const showtimeRes = await fetch(`http://localhost:5000/api/theaters/showtimes/${id}`);
+                const showtimeRes = await fetch(`${API_URL}/api/theaters/showtimes/${id}`);
                 const showtimeData = await showtimeRes.json();
                 setShowtimes(showtimeData);
             } catch (error) {
