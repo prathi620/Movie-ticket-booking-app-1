@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MovieCard from '../components/MovieCard';
 import { useNavigate } from 'react-router-dom';
+import API_URL from '../config/api';
 
 const Home = () => {
     const [movies, setMovies] = useState([]);
@@ -18,7 +19,7 @@ const Home = () => {
     useEffect(() => {
         const fetchMovies = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/movies');
+                const response = await fetch(`${API_URL}/api/movies`);
                 const data = await response.json();
                 setMovies(data);
                 setFilteredMovies(data);
@@ -73,7 +74,7 @@ const Home = () => {
     const searchTMDB = async (query) => {
         setIsSearching(true);
         try {
-            const res = await fetch(`http://localhost:5000/api/cinema/search?query=${query}`);
+            const res = await fetch(`${API_URL}/api/cinema/search?query=${query}`);
             const data = await res.json();
             // Filter out movies that are already in our local list to avoid duplicates in dropdown
             const localTitles = movies.map(m => m.title.toLowerCase());
@@ -89,7 +90,7 @@ const Home = () => {
     const importAndBook = async (tmdbMovie) => {
         try {
             // Import the movie
-            const res = await fetch('http://localhost:5000/api/cinema/import', {
+            const res = await fetch(`${API_URL}/api/cinema/import`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ tmdbId: tmdbMovie.tmdbId })
